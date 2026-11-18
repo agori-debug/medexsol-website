@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medexsol | Your MedTech Partner in Saudi Arabia</title>
+<meta name="description" content="Saudi-based MedTech platform helping global medical technology companies enter, scale, and operate in Saudi Arabia.">
+<link rel="icon" href="assets/logo/medexsol-h-color.svg">
+<style>
+/* =========================================================
+   MEDEXSOL — HOMEPAGE DIRECTION 2 · “Clarity through glass”
+   Light, refracted, editorial. Blurred signal → sharp focus.
+   ========================================================= */
+@font-face{font-family:Cairo;src:url(assets/fonts/cairo-300.woff) format("woff");font-weight:300;font-display:swap}
+@font-face{font-family:Cairo;src:url(assets/fonts/cairo-400.woff) format("woff");font-weight:400;font-display:swap}
+@font-face{font-family:Cairo;src:url(assets/fonts/cairo-600.woff) format("woff");font-weight:600;font-display:swap}
+@font-face{font-family:Cairo;src:url(assets/fonts/cairo-700.woff) format("woff");font-weight:700;font-display:swap}
+
+:root{
+  /* Brand board */
+  --navy:#222B79; --navy-deep:#161C57; --cyan:#00B1F5; --cyan-ink:#0079B8;
+  --olive:#707D35; --olive-soft:#9AA279; --ice:#E0F0FC; --grey:#919191; --grey-pale:#E6E6E6;
+  /* Direction 2 surfaces */
+  --canvas:#F3F7FB; --paper:#FFFFFF; --ink:#1A1F4D; --body:#4A5070; --muted:#7D8299; --hair:rgba(34,43,121,.12); --hair-2:rgba(34,43,121,.2);
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  /* One desktop grid: 12 columns, shared margin + gutter, used by every section */
+  --wrap:1312px; --pad:64px; --gut:32px; --inset:12px;
+  --ease:cubic-bezier(.2,.7,.2,1); --out:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Cairo,system-ui,sans-serif;font-size:17px;line-height:1.6;color:var(--body);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+::selection{background:var(--ice);color:var(--navy)}
+.wrap{max-width:calc(var(--wrap) + var(--pad)*2);margin:0 auto;padding:0 var(--pad)}
+/* same content box when nested inside an inset canvas (canvas sits var(--inset) in from the viewport) */
+.wrap-in{max-width:calc(var(--wrap) + (var(--pad) - var(--inset))*2);margin:0 auto;padding:0 calc(var(--pad) - var(--inset))}
+.g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gut)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:16px;top:16px;z-index:100;background:#fff;padding:8px 14px;border-radius:8px}
+
+/* ---------- Type system: huge light display + small mono metadata ---------- */
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:10px}
+.tag b{font-weight:400;color:var(--navy)}
+.tag .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);flex:none}
+.tag .dot.ol{background:var(--olive)}
+.d-xxl{font-weight:300;font-size:clamp(84px,8.6vw,136px);line-height:.96;letter-spacing:-.045em;color:var(--navy)}
+.d-xl{font-weight:300;font-size:clamp(64px,7vw,112px);line-height:.98;letter-spacing:-.04em;color:var(--navy)}
+.d-l{font-weight:300;font-size:clamp(46px,4.4vw,68px);line-height:1.04;letter-spacing:-.03em;color:var(--navy)}
+.d-m{font-weight:300;font-size:40px;line-height:1.12;letter-spacing:-.022em;color:var(--navy)}
+.d-l strong,.d-m strong,.d-xl strong{font-weight:600}
+.soft{color:rgba(34,43,121,.42)}
+.lead{font-size:19px;line-height:1.6;color:var(--body)}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 24px;border-radius:999px;font-size:15.5px;font-weight:600;white-space:nowrap;transition:background .3s var(--ease),color .3s,border-color .3s,box-shadow .3s}
+.btn svg{width:15px;height:15px;transition:transform .35s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:var(--navy)}
+.btn-glass{background:rgba(255,255,255,.6);color:var(--navy);border:1px solid rgba(34,43,121,.14);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.btn-glass:hover{background:#fff;border-color:rgba(34,43,121,.3)}
+.btn-white{background:#fff;color:var(--navy)}
+.btn-white:hover{background:var(--ice)}
+.btn-line{color:#fff;border:1px solid rgba(255,255,255,.3)}
+.btn-line:hover{border-color:#fff}
+.btn-sm{height:42px;padding:0 18px;font-size:14.5px}
+.arrow-link{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15.5px;color:var(--navy)}
+.arrow-link i{width:30px;height:30px;border-radius:50%;border:1px solid var(--hair-2);display:grid;place-items:center;transition:background .3s,color .3s,border-color .3s,transform .4s var(--ease)}
+.arrow-link i svg{width:13px;height:13px}
+.arrow-link:hover i{background:var(--navy);border-color:var(--navy);color:#fff;transform:rotate(-45deg)}
+.arrow-link.on-dark{color:#fff}
+.arrow-link.on-dark i{border-color:rgba(255,255,255,.3)}
+.arrow-link.on-dark:hover i{background:#fff;color:var(--navy);border-color:#fff}
+
+/* ---------- Images that settle into place ---------- */
+.focus{position:relative;overflow:hidden;isolation:isolate}
+.focus>img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 2.2s var(--out)}
+.focus.in>img{transform:scale(1)}
+
+/* ---------- Header ---------- */
+.hdr{position:fixed;left:var(--inset);right:var(--inset);top:var(--inset);z-index:50;pointer-events:none}
+.hdr-in{display:flex;align-items:center;gap:24px;height:76px;padding:0 20px 0 28px;border-radius:22px;transition:background .4s var(--ease),box-shadow .4s var(--ease),backdrop-filter .4s;pointer-events:auto}
+.hdr.scrolled .hdr-in{background:rgba(255,255,255,.72);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 0 0 1px rgba(34,43,121,.07),0 18px 40px -26px rgba(22,28,87,.35)}
+.brand img{height:34px;width:auto}
+.nav{margin:0 auto;display:flex;gap:2px;padding:5px;border-radius:999px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px -20px rgba(22,28,87,.35)}
+.hdr.scrolled .nav{background:transparent;border-color:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav a{font-size:14.5px;font-weight:600;color:var(--ink);padding:8px 15px;border-radius:999px;transition:background .25s,color .25s;white-space:nowrap}
+.nav a:hover{background:rgba(34,43,121,.06)}
+.nav a.cur{background:var(--ink);color:#fff}
+.hdr-act{display:flex;gap:10px;align-items:center}
+.icon-btn{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:var(--navy);background:rgba(255,255,255,.6);border:1px solid rgba(34,43,121,.1);transition:background .25s}
+.icon-btn:hover{background:#fff}
+.icon-btn svg{width:17px;height:17px}
+.hdr-bar{position:absolute;left:28px;right:28px;bottom:0;height:1px;background:transparent;overflow:hidden;border-radius:2px}
+.hdr-bar span{display:block;height:100%;width:0;background:var(--cyan)}
+@media (max-width:1320px){.nav a{padding:8px 11px;font-size:14px}}
+
+/* ---------- 01 Hero: fluted canvas ---------- */
+.hero{padding:var(--inset)}
+.canvas{position:relative;border-radius:30px;overflow:hidden;background:var(--canvas);isolation:isolate}
+.hero .canvas{height:calc(100vh - var(--inset)*2);min-height:780px;max-height:1000px;display:flex;flex-direction:column}
+.light{position:absolute;inset:0;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;will-change:transform;filter:blur(56px)}
+.orb-a{width:56vw;height:56vw;max-width:860px;max-height:860px;right:-24vw;top:-30vw;background:radial-gradient(circle at 45% 55%,#0E64D8 0%,#2A4FC4 26%,var(--navy) 44%,rgba(34,43,121,0) 68%);animation:driftA 18s ease-in-out infinite alternate}
+.orb-b{width:42vw;height:42vw;max-width:640px;max-height:640px;left:-18vw;top:28%;background:radial-gradient(circle,var(--cyan) 0%,#2B8BEA 30%,rgba(0,177,245,0) 66%);animation:driftB 22s ease-in-out infinite alternate}
+/* hero: left glow in the two brand olives */
+.hero .orb-b{background:radial-gradient(circle,rgba(112,125,53,.9) 0%,rgba(112,125,53,.7) 20%,rgba(154,162,121,.55) 42%,rgba(154,162,121,0) 68%)}
+.orb-c{width:30vw;height:30vw;max-width:460px;max-height:460px;right:16%;bottom:-16vw;background:radial-gradient(circle,rgba(0,177,245,.55) 0%,rgba(0,177,245,0) 66%);animation:driftA 26s ease-in-out infinite alternate-reverse}
+.orb-d{width:14vw;height:14vw;max-width:220px;max-height:220px;left:24%;top:8%;background:radial-gradient(circle,rgba(112,125,53,.35) 0%,rgba(112,125,53,0) 66%)}
+@keyframes driftA{from{transform:translate(0,0)}to{transform:translate(-4vw,3vw)}}
+@keyframes driftB{from{transform:translate(0,0)}to{transform:translate(5vw,-3vw)}}
+.hero-body{position:relative;z-index:4;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px var(--pad) 0}
+.hero-body .tag{color:var(--navy);background:rgba(255,255,255,.66);padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.9)}
+.hero h1{margin:26px 0 0}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .ln>span{display:block;transform:translateY(105%);transition:transform 1.2s var(--out)}
+.loaded .hero h1 .ln>span{transform:none}
+.loaded .hero h1 .ln:nth-child(2)>span{transition-delay:.12s}
+.hero h1 em{font-style:normal;font-weight:600}
+.hero-sub{display:flex;align-items:center;gap:36px;margin-top:34px;text-align:left}
+.hero-sub p{font-size:17.5px;line-height:1.55;color:var(--ink);max-width:34em}
+.hero-cta{display:flex;gap:10px;flex:none}
+.hero-meta{position:relative;z-index:4;width:100%}
+.hero-meta .g12{border-top:1px solid rgba(34,43,121,.14)}
+.hero-meta .g12>div{grid-column:span 4;padding:20px 0 26px;display:flex;flex-direction:column;gap:4px}
+.hero-meta .tag{font-size:11px}
+.hero-meta strong{font-weight:600;font-size:15.5px;color:var(--navy)}
+
+/* ---------- 02 Paths: tall gradient glass cards ---------- */
+.paths{padding:120px 0 40px}
+.paths-head{align-items:end;margin-bottom:44px}
+.paths-head .d-m{grid-column:1/span 8}
+.paths-head p{grid-column:9/span 4;font-size:16px;color:var(--muted)}
+.path-row>.pcard{grid-column:span 4}
+.pcard{position:relative;border-radius:26px;min-height:520px;padding:30px;display:flex;flex-direction:column;overflow:hidden;color:#fff;isolation:isolate;transition:transform .6s var(--out),box-shadow .6s var(--out)}
+.pcard::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--g);transition:transform 1.2s var(--out)}
+.pcard::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(120% 70% at 85% 0%,rgba(255,255,255,.35),rgba(255,255,255,0) 55%)}
+.pcard:hover::before{transform:scale(1.12)}
+.pcard.a{--g:linear-gradient(165deg,#3B6FE0 0%,var(--navy) 55%,var(--navy-deep) 100%)}
+.pcard.b{--g:linear-gradient(170deg,#9FD9F6 0%,#3FA9EF 45%,#2457C9 100%)}
+.pcard.c{--g:linear-gradient(170deg,#F4F7EC 0%,#DDE9F4 45%,#A9CFEF 100%);color:var(--navy)}
+.pcard .orbit{position:absolute;right:-70px;top:-70px;width:260px;height:260px;border-radius:50%;border:1px solid rgba(255,255,255,.4);z-index:0;pointer-events:none}
+.pcard.c .orbit{border-color:rgba(34,43,121,.2)}
+/* muted-olive dot sitting exactly on the orbit path (lower-left, 135°) */
+.pcard .orbit::after{content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:var(--olive-soft);left:calc(50% - 35.355% - 5.5px);top:calc(50% + 35.355% - 5.5px)}
+.pcard>*:not(.orbit){position:relative;z-index:1}
+.pcard .top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.pcard h3{margin-top:auto;font-weight:300;font-size:42px;line-height:1.02;letter-spacing:-.03em}
+.pcard p{font-size:15.5px;line-height:1.5;opacity:.82;margin:16px 0 26px;max-width:22em}
+.pcard .go{display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid rgba(255,255,255,.28);font-weight:600;font-size:15px}
+.pcard.c .go{border-color:rgba(34,43,121,.18)}
+.pcard .go i{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;transition:transform .4s var(--ease),background .3s}
+.pcard.c .go i{background:var(--navy);color:#fff}
+.pcard:hover .go i{transform:rotate(-45deg);background:#fff;color:var(--navy)}
+.pcard.c:hover .go i{background:var(--navy);color:#fff}
+.pcard .go svg{width:14px;height:14px}
+
+/* ---------- 03 Who we are ---------- */
+.who{padding:110px 0 120px}
+/* opening block follows the “More than a distributor” layout: big headline left, compact text right */
+.who-grid{align-items:start}
+.who-grid .rgt{padding-top:34px}
+.who-grid .lft{grid-column:1/span 8}
+.who-grid .lft .d-l{margin-top:22px;max-width:15em}
+.who-grid .rgt{grid-column:9/span 4;display:flex;flex-direction:column;gap:18px;padding-bottom:6px}
+.who-grid .rgt .lead{font-size:16.5px;line-height:1.6;color:var(--ink)}
+.who-grid .meta{display:flex;flex-direction:column;gap:14px}
+.who-grid .meta div{padding-top:12px;border-top:1px solid var(--hair)}
+.who-grid .meta b{display:block;font-weight:600;color:var(--navy);font-size:15px}
+.who-grid .meta span{font-size:14.5px;line-height:1.5}
+.who-img{margin-top:72px;height:620px;border-radius:28px;background:#E8EEF3}
+.who-img>img{object-position:50% 38%}
+.who-img .cap{position:absolute;left:28px;bottom:26px;z-index:3;display:flex;gap:10px;align-items:center;background:rgba(255,255,255,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px 16px;border-radius:999px;font-weight:600;font-size:14px;color:var(--navy)}
+.who-img .cap i{width:7px;height:7px;border-radius:50%;background:var(--olive)}
+.who-img .cnt{position:absolute;right:28px;bottom:26px;z-index:3;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);background:rgba(255,255,255,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:11px 16px;border-radius:999px}
+
+/* ---------- 04 Credentials ledger ---------- */
+.cred{padding:40px 0 130px;position:relative;overflow:hidden}
+.cred .dots{position:absolute;right:0;top:0;width:46%;height:100%;pointer-events:none;opacity:.6;background-image:radial-gradient(#C9CCD6 1.1px,transparent 1.5px);background-size:14px 14px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 75%);mask-image:linear-gradient(90deg,transparent,#000 75%)}
+.cred-top{position:relative;align-items:end;padding-bottom:34px}
+.cred-top .d-xl{grid-column:1/span 8;letter-spacing:-.05em}
+.cred-top p{grid-column:9/span 4;font-size:17px;margin-bottom:14px}
+.cred-top p b{display:block;font-weight:600;color:var(--navy);font-size:19px}
+.ledger{position:relative;border-top:1px solid var(--hair-2)}
+.lrow{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gut);align-items:center;padding:26px 0;border-bottom:1px solid var(--hair);position:relative;transition:background .3s}
+.lrow::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--cyan);transition:width .9s var(--out)}
+.lrow:hover::before{width:100%}
+.lrow .k{grid-column:1/span 2;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;gap:12px;align-items:center}
+.lrow .k em{font-style:normal;color:var(--navy)}
+.lrow .v{grid-column:3/span 6;font-weight:300;font-size:46px;line-height:1;letter-spacing:-.03em;color:var(--navy);display:flex;align-items:baseline;white-space:nowrap}
+.lrow .v small{font-size:46px;color:var(--cyan)}
+.lrow .v .sep{width:8px;height:8px;border-radius:50%;background:var(--cyan);display:inline-block;margin:0 16px;transform:translateY(-10px)}
+.lrow .d{grid-column:9/span 4;font-size:16px;color:var(--body)}
+
+/* ---------- 05 What we do: glass columns ---------- */
+.what{padding:0 var(--inset)}
+.what .canvas{padding:110px 0 64px}
+.what-head{position:relative;z-index:4;align-items:end;margin-bottom:56px}
+.what-head .lft{grid-column:1/span 8}
+.what-head .lft .d-xl{margin-top:22px}
+.what-head p{grid-column:9/span 4;font-size:18px;color:var(--ink)}
+/* the blue shape behind the columns is faded right back so copy reads cleanly */
+.what .light .orb-a{right:auto;left:22%;top:auto;bottom:-24vw;width:60vw;height:60vw;max-width:980px;max-height:980px;opacity:.16;filter:blur(30px)}
+.what .light .orb-b{left:auto;right:-10vw;top:-8vw;opacity:.55}
+.cols{position:relative;z-index:4;grid-template-rows:auto minmax(110px,1fr) auto}
+.cols>.col{grid-column:span 3;grid-row:span 3;display:grid;grid-template-rows:subgrid;row-gap:0}
+.col h3{align-self:end}
+.col{position:relative;padding:30px 28px 32px;border-radius:22px;border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.72);backdrop-filter:blur(26px) saturate(1.2);-webkit-backdrop-filter:blur(26px) saturate(1.2);box-shadow:0 24px 50px -40px rgba(22,28,87,.35);transition:background .5s var(--ease)}
+.col:hover{background:rgba(255,255,255,.94)}
+.col .n{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--navy);display:flex;justify-content:space-between}
+.col .n span{color:var(--muted)}
+.col .big{font-weight:300;font-size:96px;line-height:1;letter-spacing:-.05em;color:rgba(34,43,121,.14);margin-top:0;transition:color .5s}
+.col:hover .big{color:var(--cyan)}
+.col h3{font-weight:600;font-size:24px;line-height:1.18;color:var(--navy);letter-spacing:-.01em}
+.col ul{margin-top:16px}
+.col li{font-size:15px;line-height:1.45;color:var(--ink);padding:9px 0;border-top:1px solid rgba(34,43,121,.12);display:flex;gap:10px}
+.col li::before{content:"";flex:none;width:5px;height:5px;border-radius:50%;background:var(--navy);margin-top:9px}
+.what-foot{position:relative;z-index:4;align-items:center;margin-top:40px}
+.what-foot p{grid-column:1/span 8;font-size:17px;color:var(--ink)}
+.what-foot .arrow-link,.pt-foot .arrow-link,.cv-foot .arrow-link{grid-column:9/span 4;justify-self:start}
+.what-foot p b{font-weight:600;color:var(--navy)}
+
+/* ---------- 06 Solutions: pinned horizontal track ---------- */
+.sol{position:relative;padding-top:120px}
+.sol-pin{position:sticky;top:0;height:100vh;min-height:720px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.sol-head{align-items:end;margin-bottom:40px}
+.sol-head>div:first-child{grid-column:1/span 8}
+.sol-head .d-l{margin-top:18px;max-width:11em}
+.sol-ctl{grid-column:9/span 4;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.sol-ctl p{font-size:16px}
+.sol-prog{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:12px;color:var(--navy);letter-spacing:.06em}
+.sol-prog .bar{width:180px;height:2px;background:var(--hair);position:relative;overflow:hidden;border-radius:2px}
+.sol-prog .bar span{position:absolute;inset:0;width:var(--p,0%);background:var(--navy)}
+.track{display:flex;gap:var(--gut);padding-left:max(var(--pad),calc((100vw - var(--wrap))/2));padding-right:var(--pad);will-change:transform}
+.scard{flex:none;width:calc((min(100vw - var(--pad)*2, var(--wrap)) - var(--gut)*11)/12*4 + var(--gut)*3);height:560px;border-radius:26px;background:#fff;border:1px solid var(--hair);overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s,box-shadow .5s var(--out)}
+.scard .media{height:262px;margin:10px 10px 0;border-radius:18px;background:linear-gradient(160deg,#fff,var(--ice));position:relative;overflow:hidden}
+.scard .media img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--out)}
+.scard .media.contain img{object-fit:contain;padding:22px}
+.scard:hover .media img{transform:scale(1.05)}
+.scard .body{padding:22px 26px 26px;display:flex;flex-direction:column;flex:1}
+.scard .row{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.scard .row b{font-weight:400;color:var(--navy)}
+.scard h3{font-weight:600;font-size:26px;line-height:1.15;letter-spacing:-.015em;color:var(--navy);margin:14px 0 10px}
+.scard p{font-size:15px;line-height:1.5}
+.scard .tags{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px}
+.scard .tags span{font-size:12.5px;font-weight:600;color:var(--navy);background:var(--canvas);border-radius:999px;padding:5px 12px}
+.scard.end{background:var(--navy);border-color:var(--navy);color:#fff;position:relative;justify-content:flex-end;padding:30px;isolation:isolate}
+.scard.end::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;right:-220px;top:-200px;background:radial-gradient(circle,var(--cyan),rgba(0,177,245,0) 65%);z-index:-1;opacity:.7}
+.scard.end h3{color:#fff;font-weight:300;font-size:46px;line-height:1;letter-spacing:-.035em;margin:0 0 18px}
+.scard.end p{color:rgba(255,255,255,.75);margin-bottom:28px}
+
+/* ---------- 07 Featured technologies: specimen discs ---------- */
+.tech{padding:130px 0 120px}
+.tech-head{align-items:end;margin-bottom:64px}
+.tech-head>div{grid-column:1/span 8}
+.tech-head .arrow-link{grid-column:9/span 4;justify-self:start}
+.tech-head .d-l{margin-top:18px}
+/* 4 cards × span 3; subgrid rows keep meta / title / copy / tags / links level across all cards */
+.tech-grid{grid-template-rows:repeat(6,auto);row-gap:0}
+.spec{grid-column:span 3;grid-row:span 6;display:grid;grid-template-rows:subgrid;align-content:start}
+.disc{position:relative;aspect-ratio:1;margin:0 22px 0 0}
+.disc .fill{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 38% 32%,#fff 0%,var(--ice) 62%,#CFE6F8 100%);transition:transform .8s var(--out)}
+/* dotted cyan orbit + cyan dot riding on it (upper-left, ~150°) */
+.disc .ring{position:absolute;inset:0;border-radius:50%;border:1.5px dotted rgba(0,177,245,.75);transform:translate(16px,-4px);transition:transform .8s var(--out)}
+.disc .ring::after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px rgba(0,177,245,.16);left:calc(50% - 43.3% - 6px);top:calc(50% - 25% - 6px)}
+.disc img{position:absolute;inset:14%;width:72%;height:72%;object-fit:contain;transition:transform .9s var(--out)}
+.spec:hover .disc .fill{transform:scale(1.04)}
+.spec:hover .disc .ring{transform:translate(8px,-2px) rotate(24deg)}
+.spec:hover .disc img{transform:translateY(-6px) scale(1.04)}
+.spec .meta{margin-top:48px;padding-top:24px;border-top:1px solid var(--hair);display:flex;flex-direction:column;gap:12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.spec .meta b{font-weight:400;color:var(--navy)}
+.spec h3{font-weight:300;font-size:40px;line-height:1.05;letter-spacing:-.03em;color:var(--navy);margin-top:36px}
+.spec p{font-size:15px;line-height:1.6;margin-top:22px}
+.spec ul{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px;align-content:start}
+.spec li{font-size:12.5px;font-weight:600;color:var(--navy);border:1px solid var(--hair-2);border-radius:999px;padding:5px 12px}
+.spec .acts{margin-top:40px;padding-top:24px;border-top:1px solid var(--hair);display:flex;gap:22px;align-items:center}
+.spec .acts a.q{font-weight:600;font-size:14.5px;color:var(--navy);border-bottom:1px solid var(--navy);padding-bottom:1px}
+.spec .acts a.dt{font-size:14.5px;color:var(--muted)}
+.spec .acts a.dt:hover{color:var(--navy)}
+
+/* ---------- 08 Saudi Arabia: city through glass ---------- */
+.ksa{padding:0 0 130px}
+.ksa-head{align-items:end;margin-bottom:48px}
+.ksa-head .lft{grid-column:1/span 8}
+.ksa-head .lft .d-l{margin-top:18px}
+.ksa-head .rgt{grid-column:9/span 4}
+.ksa-head .rgt .lead{font-size:17px;margin-bottom:20px}
+.ksa-frame{--side:max(calc(var(--pad) - var(--inset)),calc((100% - var(--wrap))/2));margin:0 var(--inset);height:min(78vh,720px);min-height:560px;border-radius:30px;background:var(--navy)}
+.ksa-frame>img{object-position:62% 60%}
+.ksa-frame .shade{position:absolute;inset:0;z-index:3;background:linear-gradient(0deg,rgba(22,28,87,.86) 0%,rgba(22,28,87,.35) 42%,rgba(22,28,87,0) 70%)}
+.ksa-frame .over{position:absolute;left:var(--side);right:var(--side);bottom:0;z-index:4;padding:0 0 44px;align-items:end;color:#fff}
+.ksa-frame .over>div:first-child{grid-column:1/span 8}
+.ksa-frame .over .cities{grid-column:9/span 4}
+.ksa-frame .over .tag{color:rgba(255,255,255,.7)}
+.ksa-frame .over p{font-weight:300;font-size:44px;line-height:1.1;letter-spacing:-.025em;max-width:15em;margin-top:16px}
+.ksa-frame .over p b{font-weight:600}
+.cities{display:flex;flex-wrap:wrap;gap:8px}
+.cities span{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:8px 16px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.cities span i{width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+.ksa-frame .loc{position:absolute;top:32px;right:var(--side);z-index:4;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.drivers{margin-top:44px}
+.drv{grid-column:span 3;padding:24px 0 6px;border-top:1px solid var(--hair-2)}
+.drv .tag{color:var(--navy)}
+.drv h3{font-weight:600;font-size:21px;line-height:1.25;color:var(--navy);margin-top:44px;max-width:12em}
+.drv p{font-size:14.5px;color:var(--muted);margin-top:6px}
+
+/* ---------- 09 Partners: logo field ---------- */
+.partners{padding:0 0 130px}
+.pt-head{align-items:end;margin-bottom:52px}
+.pt-head .lft{grid-column:1/span 8}
+.pt-head .lft .d-xl{margin-top:20px}
+.pt-head .rgt{grid-column:9/span 4;font-size:17px}
+.pt{grid-column:span 4;position:relative;min-height:380px;padding:24px 0 28px;display:flex;flex-direction:column;overflow:hidden;isolation:isolate;border-top:1px solid var(--hair-2);border-bottom:1px solid var(--hair-2)}
+.pt::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;left:50%;top:44%;transform:translate(-50%,-50%) scale(.6);background:radial-gradient(circle,rgba(0,177,245,.22),rgba(0,177,245,0) 65%);opacity:0;z-index:-1;transition:opacity .6s,transform 1s var(--out)}
+.pt:hover::before{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.pt .top{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pt .top b{font-weight:400;color:var(--navy)}
+.pt .logo{flex:1;display:grid;place-items:center;padding:30px 0}
+.pt .logo img{max-height:62px;max-width:230px;width:auto;height:auto;filter:grayscale(1) contrast(1.1);opacity:.75;transition:filter .5s,opacity .5s,transform .8s var(--out)}
+.pt:hover .logo img{filter:none;opacity:1;transform:scale(1.05)}
+.pt h3{font-weight:600;font-size:20px;color:var(--navy)}
+.pt p{font-size:15px}
+.pt-foot{align-items:center;margin-top:26px}
+.pt-foot p{grid-column:1/span 8;display:flex;gap:12px;align-items:center;font-size:15px;color:var(--muted)}
+.pt-foot p svg{width:20px;height:20px;color:var(--olive)}
+
+/* ---------- 10 Clinical value: deep chapter ---------- */
+.cv{padding:0 var(--inset)}
+.cv .canvas{background:var(--navy-deep);color:#fff;padding:110px 0 100px}
+.cv .shape{position:absolute;border-radius:50%;background:rgba(34,43,121,.9);z-index:0}
+.cv .s1{width:820px;height:820px;left:-260px;top:-300px;background:linear-gradient(180deg,#1B2266,#222B79)}
+.cv .s2{width:760px;height:760px;right:-220px;bottom:-320px;background:linear-gradient(0deg,#1B2266,#222B79)}
+.cv .glow{position:absolute;width:640px;height:640px;right:12%;top:18%;border-radius:50%;background:radial-gradient(circle,rgba(0,177,245,.28),rgba(0,177,245,0) 65%);z-index:0}
+.cv .wrap-in{position:relative;z-index:2}
+.cv-head{align-items:end;margin-bottom:56px}
+.cv-head .lft{grid-column:1/span 8}
+.cv-head .lft .d-l{color:#fff;margin-top:18px}
+.cv-head .lft .d-l .soft{color:rgba(255,255,255,.45)}
+.cv-head .lead{grid-column:9/span 4;color:rgba(255,255,255,.75);font-size:17px}
+.cv .tag{color:rgba(255,255,255,.6)}
+.cv .tag b{color:#fff}
+.cv-img{grid-column:1/span 5;border-radius:24px;min-height:500px}
+.chart{grid-column:6/span 7}
+.cv-img>img{object-position:80% 50%}
+.cv-img .cap{position:absolute;left:22px;bottom:20px;z-index:3;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#fff;display:flex;gap:10px;align-items:center}
+.cv-img .cap i{width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+.chart{border-radius:24px;background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.12);padding:28px 32px 30px;display:flex;flex-direction:column;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.chart-top{display:flex;justify-content:space-between;align-items:center}
+.chart-top h3{font-weight:300;font-size:30px;letter-spacing:-.02em;line-height:1.1}
+.plot{position:relative;margin-top:auto;padding-top:38px}
+.axis{position:absolute;inset:0 0 0 0;display:grid;grid-template-columns:repeat(4,1fr);pointer-events:none}
+.axis span{border-left:1px dashed rgba(255,255,255,.14);font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.45);padding-left:8px}
+.axis span:last-child{border-right:1px dashed rgba(255,255,255,.14);position:relative}
+.axis span:last-child::after{content:"12";position:absolute;right:-6px;top:0;transform:translateX(100%)}
+.bars{position:relative;display:flex;flex-direction:column;gap:14px}
+.bar{display:flex;flex-direction:column;gap:7px;position:relative}
+.bar .lbl{font-size:14px;font-weight:600;color:rgba(255,255,255,.82);padding-left:2px}
+.bar .pill{height:50px;border-radius:999px;width:0;min-width:0;display:flex;align-items:center;padding:0 20px;overflow:hidden;white-space:nowrap;transition:width 1.6s var(--out);background:linear-gradient(90deg,rgba(0,177,245,.35),rgba(0,177,245,.85));box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.bar:nth-child(1) .pill{background:linear-gradient(90deg,#1D7FE8,var(--cyan))}
+.bar:nth-child(2) .pill{transition-delay:.12s}.bar:nth-child(3) .pill{transition-delay:.24s}.bar:nth-child(4) .pill{transition-delay:.36s}
+.in .bar .pill{width:var(--w)}
+.bar .pill b{font-family:var(--mono);font-weight:400;font-size:26px;letter-spacing:-.04em;color:#fff}
+.bar .pill b sup{font-size:15px;color:#D4F1FF;margin-left:2px}
+.benefits{margin-top:40px}
+.bf{grid-column:span 4;padding:22px 0;display:flex;gap:16px;align-items:flex-start;border-top:1px solid rgba(255,255,255,.14)}
+.bf .tag{flex:none;color:var(--cyan);padding-top:4px}
+.bf h3{font-weight:600;font-size:17px;line-height:1.4;color:#fff}
+.cv-foot{margin-top:34px}
+
+/* ---------- 11 CTA + footer (one glass canvas) ---------- */
+.end{padding:130px var(--inset) var(--inset)}
+.end .canvas{padding:120px 0 var(--inset)}
+.end .light .orb-a{top:auto;bottom:-34vw;right:-20vw}
+.end .light .orb-b{top:-12vw;left:-14vw}
+.cta{position:relative;z-index:4;text-align:center;display:flex;flex-direction:column;align-items:center;padding:0 var(--pad)}
+.cta .tag{color:var(--navy);background:rgba(255,255,255,.66);padding:7px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.9)}
+.cta h2{margin:26px 0 22px;max-width:12.5em}
+.cta p{font-size:18px;color:var(--ink);max-width:33em}
+.cta-actions{display:flex;gap:10px;margin-top:32px}
+.offer{display:flex;gap:28px;margin-top:40px;font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--navy)}
+.offer span{display:flex;align-items:center;gap:8px}
+.offer span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--navy)}
+/* footer card: its inner padding puts the content exactly on the page grid */
+.ftr{--fp:40px;position:relative;z-index:4;width:calc(min(100vw - var(--pad)*2, var(--wrap)) + var(--fp)*2);margin:110px auto 0;border-radius:22px;background:rgba(255,255,255,.78);backdrop-filter:blur(24px) saturate(1.3);-webkit-backdrop-filter:blur(24px) saturate(1.3);border:1px solid rgba(255,255,255,.95);padding:44px calc(var(--fp) - 1px) 22px}
+.ftr-grid{padding-bottom:40px}
+.ftr-grid>div:first-child{grid-column:1/span 6}
+.ftr-grid>div:not(:first-child){grid-column:span 2}
+.ftr .brand img{height:38px}
+.ftr .about{font-size:15.5px;margin-top:20px;max-width:21em}
+.ftr h4{font-family:var(--mono);font-weight:400;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.ftr li{margin-bottom:8px}
+.ftr li a{font-size:15.5px;color:var(--ink)}
+.ftr li a:hover{color:var(--navy);text-decoration:underline;text-underline-offset:4px}
+.ftr .ph{color:var(--muted);font-size:15.5px}
+.ph-flag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9A6B00;background:#FFF4D6;border-radius:6px;padding:1px 7px;margin-left:6px;vertical-align:middle}
+.ftr-bot{display:flex;justify-content:space-between;padding-top:20px;border-top:1px solid var(--hair);font-size:13.5px;color:var(--muted)}
+.ftr-bot a:hover{color:var(--navy)}
+
+/* ---------- Wireframe-copy layout adjustments ---------- */
+.hero-meta .g12>div.util{grid-column:1/-1;flex-direction:row;align-items:center;gap:12px}
+.hero-meta .util .dot{width:6px;height:6px;border-radius:50%;background:var(--olive);flex:none}
+.pcard .top{justify-content:flex-end}
+.cred-top .lft{grid-column:1/span 8}
+.cred-top .lft .d-l{margin-top:18px}
+.ledger.g12{border-top:0;row-gap:0}
+.ledger .cell{grid-column:span 4;padding:24px 0 40px;border-top:1px solid var(--hair-2);display:flex;flex-direction:column;gap:26px}
+.ledger .cell .tag{color:var(--navy)}
+.ledger .cell p{font-weight:300;font-size:30px;line-height:1.2;letter-spacing:-.02em;color:var(--navy);max-width:12em}
+.what-head .rgt{grid-column:9/span 4;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.what-head .rgt p{font-size:18px;color:var(--ink)}
+.col p{margin-top:14px;font-size:15.5px;line-height:1.6;color:var(--ink)}
+.sol-ctl{gap:22px}
+.sol-pin>.wrap{width:100%}
+.scard{height:auto;color:inherit}
+.scard .body{padding:20px 24px 26px}
+.scard .ttl{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-top:14px}
+.scard .ttl h3{margin:0;min-height:2.3em}
+.scard .ttl i{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--canvas);color:var(--navy);transition:background .3s,color .3s}
+.scard .ttl i svg{width:14px;height:14px}
+.scard:hover .ttl i,.scard:active .ttl i{background:var(--navy);color:#fff}
+.spec .acts{gap:10px}
+.pt-head .rgt,.cv-head .rgt{grid-column:9/span 4;justify-self:start}
+.bf{align-items:center}
+.bf .chk{flex:none;width:22px;height:22px;color:var(--cyan)}
+.cta h2{margin-top:0;max-width:none}
+/* Riyadh frame: footprint block on the dark left side, towers stay clear on the right */
+.ksa-frame .shade{background:linear-gradient(90deg,rgba(22,28,87,.9) 0%,rgba(22,28,87,.72) 34%,rgba(22,28,87,.18) 58%,rgba(22,28,87,0) 72%)}
+.ksa-frame .over{top:0;bottom:0;padding:0;align-content:center}
+.ksa-frame .over .fp{grid-column:1/span 5;display:flex;flex-direction:column;align-items:flex-start}
+.ksa-frame .over .fp p{margin-top:20px;max-width:11em}
+.ksa-frame .over .cities{margin-top:32px}
+.ftr .about{max-width:17em}
+.ftr h4{font-family:inherit;font-weight:600;font-size:15.5px;letter-spacing:0;text-transform:none;color:var(--navy)}
+
+/* ---------- One interaction treatment: subtle shadow, identical on hover and press ----------
+   Surfaces that respond: buttons, icon buttons, nav pills, arrow-link circles, clickable cards.
+   Non-clickable cards no longer react to hover. */
+:root{--lift:0 14px 30px -18px rgba(22,28,87,.42)}
+.btn,.icon-btn,.nav a,.arrow-link i,.pcard,.scard{transition:background .3s var(--ease),color .3s,border-color .3s,box-shadow .35s var(--ease),transform .35s var(--ease)}
+.btn:hover,.btn:active,.icon-btn:hover,.icon-btn:active,.nav a:hover,.nav a:active,.arrow-link:hover i,.arrow-link:active i{box-shadow:var(--lift)}
+.pcard:hover,.pcard:active,.scard:hover,.scard:active{transform:translateY(-4px);box-shadow:var(--lift);border-color:var(--hair)}
+.btn:active,.icon-btn:active{transform:none}
+.btn:active svg{transform:translateX(3px)}
+.btn-ink:active{background:var(--navy)}.btn-glass:active{background:#fff;border-color:rgba(34,43,121,.3)}
+.icon-btn:active{background:#fff}.nav a:active{background:rgba(34,43,121,.06)}
+.arrow-link:active i{background:var(--navy);border-color:var(--navy);color:#fff;transform:rotate(-45deg)}
+.arrow-link.on-dark:active i{background:#fff;color:var(--navy);border-color:#fff}
+.pcard:active .go i{transform:rotate(-45deg);background:#fff;color:var(--navy)}
+.pcard.c:active .go i{background:var(--navy);color:#fff}
+.pcard:active::before{transform:scale(1.12)}
+.col:hover{background:rgba(255,255,255,.72)}
+.col:hover .big{color:rgba(34,43,121,.14)}
+.pt::before{display:none}
+.pt .logo img{filter:none;opacity:1}
+.pt:hover .logo img{transform:none}
+.spec:hover .disc .fill,.spec:hover .disc .img,.spec:hover .disc img{transform:none}
+.spec:hover .disc .ring{transform:translate(16px,-4px)}
+.lrow:hover::before{width:0}
+
+/* ---------- Motion ---------- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--out),transform 1.1s var(--out)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+.fade{opacity:0;transition:opacity 1.2s var(--out) .5s}
+.loaded .fade{opacity:1}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .rv,.fade{opacity:1;transform:none}.hero h1 .ln>span{transform:none}
+  .bar .pill{width:var(--w)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 16 16"><path d="M8 3v10M4 9l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-search" viewBox="0 0 20 20"><circle cx="9" cy="9" r="6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.2 12.3l2.5 2.5 5-5.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.4-3 8.2-7 9.5-4-1.3-7-5.1-7-9.5V6l7-3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.8 12l2.2 2.2 4.2-4.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<!-- ================= HEADER ================= -->
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a class="brand" href="#top" aria-label="Medexsol home"><img src="assets/logo/medexsol-h-color.svg" alt="Medexsol"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#top">Home</a>
+      <a href="#about">About</a>
+      <a href="#market-access">Market Access</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#partners">Partners</a>
+      <a href="#clinical-value">Clinical Value</a>
+      <a href="#saudi-market">Saudi Market</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hdr-act">
+      <button class="icon-btn" aria-label="Search"><svg><use href="#i-search"/></svg></button>
+      <a class="btn btn-ink btn-sm" href="#contact">Request a Quote</a>
+    </div>
+    <div class="hdr-bar" aria-hidden="true"><span id="bar"></span></div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ================= 01 HERO ================= -->
+<section class="hero" id="top">
+  <div class="canvas" id="heroCanvas">
+    <div class="light" aria-hidden="true" id="heroLight">
+      <span class="orb orb-a"></span><span class="orb orb-b"></span><span class="orb orb-c"></span>
+    </div>
+
+    <div class="hero-body">
+      <h1 class="d-xxl">
+        <span class="ln"><span>Your MedTech Partner</span></span>
+        <span class="ln"><span>in <em>Saudi&nbsp;Arabia</em></span></span>
+      </h1>
+      <div class="hero-sub rv d3">
+        <p>Medexsol is a Saudi-based medical technology platform helping global MedTech companies enter, scale, and operate within the Kingdom of Saudi&nbsp;Arabia.</p>
+        <div class="hero-cta">
+          <a class="btn btn-ink" href="#contact">Become a Partner <svg><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-glass" href="#solutions">Explore Our Solutions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-meta wrap-in rv d4">
+      <div class="g12">
+        <div class="util"><span class="dot"></span><strong>Offices in Riyadh &amp; Jeddah · SFDA, U.S. FDA &amp; NMPA approved technologies</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 PATHS ================= -->
+<section class="paths" id="paths" aria-labelledby="paths-h">
+  <div class="wrap">
+    <div class="paths-head g12">
+      <h2 class="d-m rv" id="paths-h">How can we help you?</h2>
+    </div>
+    <div class="path-row g12">
+      <a class="pcard a rv d1" href="#contact">
+        <span class="orbit" aria-hidden="true"></span>
+        <span class="top"><span>01</span></span>
+        <h3>I'm a MedTech manufacturer</h3>
+        <p>Enter the Saudi market with a local partner.</p>
+        <span class="go">Become a Partner <i><svg><use href="#i-arrow"/></svg></i></span>
+      </a>
+      <a class="pcard b rv d2" href="#solutions">
+        <span class="orbit" aria-hidden="true"></span>
+        <span class="top"><span>02</span></span>
+        <h3>I'm a healthcare provider</h3>
+        <p>Find advanced, clinically validated technologies.</p>
+        <span class="go">Browse Solutions <i><svg><use href="#i-arrow"/></svg></i></span>
+      </a>
+      <a class="pcard c rv d3" href="#contact">
+        <span class="orbit" aria-hidden="true"></span>
+        <span class="top"><span>03</span></span>
+        <h3>I need a product quote</h3>
+        <p>Pricing and availability for your facility.</p>
+        <span class="go">Request a Quote <i><svg><use href="#i-arrow"/></svg></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 CREDIBILITY & MARKET PRESENCE ================= -->
+<section class="cred" aria-labelledby="cred-h">
+  <div class="dots" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="cred-top g12">
+      <div class="lft">
+        <span class="tag rv"><span class="dot"></span><b>Credibility &amp; Market Presence</b></span>
+        <h2 class="d-l rv d1" id="cred-h">Trusted Local Execution. <span class="soft">Global MedTech Standards.</span></h2>
+      </div>
+    </div>
+    <div class="ledger g12">
+      <div class="cell rv"><span class="tag"><span class="dot"></span>01</span><p>Reaching <span data-count="14">14</span>+ hospitals across Saudi&nbsp;Arabia</p></div>
+      <div class="cell rv d1"><span class="tag"><span class="dot"></span>02</span><p>Saudi FDA (SFDA) approved technologies</p></div>
+      <div class="cell rv d2"><span class="tag"><span class="dot"></span>03</span><p>U.S. FDA-approved technologies</p></div>
+      <div class="cell rv"><span class="tag"><span class="dot"></span>04</span><p>NMPA-approved technologies</p></div>
+      <div class="cell rv d1"><span class="tag"><span class="dot"></span>05</span><p>Offices in Riyadh and Jeddah</p></div>
+      <div class="cell rv d2"><span class="tag"><span class="dot"></span>06</span><p>Active presence in the NUPCO marketplace</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 WHO WE ARE ================= -->
+<section class="who" id="about" aria-labelledby="who-h">
+  <div class="wrap">
+    <div class="who-grid g12">
+      <div class="lft">
+        <span class="tag rv"><span class="dot ol"></span><b>Who We Are</b></span>
+        <h2 class="d-l rv d1" id="who-h"><strong>A Saudi-Based MedTech Platform</strong></h2>
+      </div>
+      <div class="rgt rv d2">
+        <p class="lead">Medexsol, Medical Express Solutions, enables global MedTech companies to successfully enter, scale, and operate within Saudi&nbsp;Arabia. We specialize in the representation, commercialization, and lifecycle management of advanced medical technologies.</p>
+        <a class="arrow-link" href="#about">More about Medexsol <i><svg><use href="#i-arrow"/></svg></i></a>
+      </div>
+    </div>
+    <div class="who-img focus" data-focus>
+      <img src="assets/img/who-we-are.webp" alt="Clinical specialist positioning a robotic medical system in a treatment room" width="1920" height="1080">
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 WHAT WE DO ================= -->
+<section class="what" id="market-access" aria-labelledby="what-h">
+  <div class="canvas">
+    <div class="light" aria-hidden="true"><span class="orb orb-a"></span><span class="orb orb-b"></span></div>
+    <div class="wrap-in">
+      <div class="what-head g12">
+        <div class="lft">
+          <span class="tag rv"><span class="dot"></span><b>What We Do</b></span>
+          <h2 class="d-xl rv d1" id="what-h">More Than a <span class="soft">Distributor</span></h2>
+        </div>
+        <div class="rgt rv d2">
+          <p>We operate as a market access and growth partner.</p>
+          <a class="arrow-link" href="#market-access">Market Access <i><svg><use href="#i-arrow"/></svg></i></a>
+        </div>
+      </div>
+      <div class="cols g12 rv">
+        <article class="col"><span class="big" aria-hidden="true">01</span><h3>Market Entry Strategy</h3><p>Regulatory pathway planning, pricing strategy, and competitive landscape analysis.</p></article>
+        <article class="col"><span class="big" aria-hidden="true">02</span><h3>Commercialization</h3><p>Direct engagement with hospitals, decision-makers, and private healthcare groups.</p></article>
+        <article class="col"><span class="big" aria-hidden="true">03</span><h3>Clinical Adoption</h3><p>Physician training, onboarding, clinical education, and KOL engagement.</p></article>
+        <article class="col"><span class="big" aria-hidden="true">04</span><h3>Lifecycle Support</h3><p>Installation, commissioning, after-sales service, maintenance, and ongoing clinical support.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 SOLUTIONS ================= -->
+<section class="sol" id="solutions" aria-labelledby="sol-h">
+  <div class="sol-pin">
+    <div class="wrap">
+      <div class="sol-head g12">
+        <div>
+          <span class="tag rv"><span class="dot"></span><b>Solutions</b></span>
+          <h2 class="d-l rv d1" id="sol-h">Integrated MedTech <span class="soft">Solutions</span></h2>
+        </div>
+        <div class="sol-ctl rv d2">
+          <a class="arrow-link" href="#solutions">View all solutions <i><svg><use href="#i-arrow"/></svg></i></a>
+          <div class="sol-prog"><span id="solIdx">01</span><span class="bar"><span id="solBar"></span></span><span>06</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="track" id="track">
+      <a class="scard" href="#solutions">
+        <div class="media"><img src="assets/img/heart-tablet.jpg" alt="Clinician reviewing a 3D heart model on a tablet"></div>
+        <div class="body"><span class="row"><b>01</b></span><span class="ttl"><h3>Coronary Physiology &amp; Imaging</h3><i><svg><use href="#i-arrow"/></svg></i></span></div>
+      </a>
+      <a class="scard" href="#solutions">
+        <div class="media contain"><img src="assets/img/p-ofr.webp" alt="OFR software analysis on a workstation"></div>
+        <div class="body"><span class="row"><b>02</b></span><span class="ttl"><h3>Digital &amp; Software-Based Medical Devices</h3><i><svg><use href="#i-arrow"/></svg></i></span></div>
+      </a>
+      <a class="scard" href="#solutions">
+        <div class="media contain"><img src="assets/img/p-gammacore.webp" alt="gammaCore handheld neuromodulation device"></div>
+        <div class="body"><span class="row"><b>03</b></span><span class="ttl"><h3>Neuromodulation Technologies</h3><i><svg><use href="#i-arrow"/></svg></i></span></div>
+      </a>
+      <a class="scard" href="#solutions">
+        <div class="media contain"><img src="assets/img/p-corelab.webp" alt="Core lab analysis of coronary CTA imaging"></div>
+        <div class="body"><span class="row"><b>04</b></span><span class="ttl"><h3>Research &amp; Core Lab Services</h3><i><svg><use href="#i-arrow"/></svg></i></span></div>
+      </a>
+      <a class="scard" href="#solutions">
+        <div class="media contain"><img src="assets/img/p-truvaga.webp" alt="Truvaga handheld wellness device"></div>
+        <div class="body"><span class="row"><b>05</b></span><span class="ttl"><h3>Preventive Health &amp; Longevity Solutions</h3><i><svg><use href="#i-arrow"/></svg></i></span></div>
+      </a>
+      <a class="scard" href="#solutions">
+        <div class="media"><img src="assets/img/doctor-dark.jpg" alt="Physician working with advanced medical imaging" style="object-position:45% 30%"></div>
+        <div class="body"><span class="row"><b>06</b></span><span class="ttl"><h3>Advanced Medical Technologies</h3><i><svg><use href="#i-arrow"/></svg></i></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 FEATURED PRODUCTS ================= -->
+<section class="tech" id="products" aria-labelledby="tech-h">
+  <div class="wrap">
+    <div class="tech-head g12">
+      <div>
+        <span class="tag rv"><span class="dot"></span><b>Featured Products</b></span>
+        <h2 class="d-l rv d1" id="tech-h">Technologies Available <span class="soft">in Saudi&nbsp;Arabia</span></h2>
+      </div>
+      <a class="arrow-link rv d2" href="#products">Browse all products <i><svg><use href="#i-arrow"/></svg></i></a>
+    </div>
+    <div class="tech-grid g12">
+      <article class="spec rv d1">
+        <div class="disc"><span class="fill"></span><span class="ring"></span><img src="assets/img/p-mufr.webp" alt="μFR software analyzing a coronary angiogram"></div>
+        <div class="meta"><b>Pulse Medical</b><span>Coronary Physiology</span></div>
+        <h3>μFR®</h3>
+        <p>Wire-free functional assessment from angiography</p>
+        <ul><li>Adenosine-free</li><li>Single angiographic view</li></ul>
+        <div class="acts"><a class="btn btn-ink btn-sm" href="#contact">Request a Quote</a><a class="btn btn-glass btn-sm" href="#products">Details</a></div>
+      </article>
+      <article class="spec rv d2">
+        <div class="disc"><span class="fill"></span><span class="ring"></span><img src="assets/img/p-ctmufr.webp" alt="CT-μFR analysis of a coronary CT angiogram"></div>
+        <div class="meta"><b>Pulse Medical</b><span>Coronary Physiology</span></div>
+        <h3>CT-μFR</h3>
+        <p>Non-invasive FFR from CT imaging</p>
+        <ul><li>Non-invasive</li><li>One-step automated analysis</li></ul>
+        <div class="acts"><a class="btn btn-ink btn-sm" href="#contact">Request a Quote</a><a class="btn btn-glass btn-sm" href="#products">Details</a></div>
+      </article>
+      <article class="spec rv d3">
+        <div class="disc"><span class="fill"></span><span class="ring"></span><img src="assets/img/p-acopilot.webp" alt="AcoPilot intravascular imaging console"></div>
+        <div class="meta"><b>Pulse Medical</b><span>Intravascular Imaging</span></div>
+        <h3>AcoPilot</h3>
+        <p>Real-time IVUS imaging with AI analysis</p>
+        <ul><li>AI auto-segmentation</li><li>IVUS + UFR</li></ul>
+        <div class="acts"><a class="btn btn-ink btn-sm" href="#contact">Request a Quote</a><a class="btn btn-glass btn-sm" href="#products">Details</a></div>
+      </article>
+      <article class="spec rv d4">
+        <div class="disc"><span class="fill"></span><span class="ring"></span><img src="assets/img/p-truvaga.webp" alt="Truvaga handheld vagus nerve stimulation device"></div>
+        <div class="meta"><b>ElectroCore</b><span>Neuromodulation</span></div>
+        <h3>Truvaga®</h3>
+        <p>Non-invasive vagus nerve stimulation</p>
+        <ul><li>Drug-free</li><li>Portable, daily use</li></ul>
+        <div class="acts"><a class="btn btn-ink btn-sm" href="#contact">Request a Quote</a><a class="btn btn-glass btn-sm" href="#products">Details</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 WHY SAUDI ARABIA ================= -->
+<section class="ksa" id="saudi-market" aria-labelledby="ksa-h">
+  <div class="wrap">
+    <div class="ksa-head g12">
+      <div class="lft">
+        <span class="tag rv"><span class="dot"></span><b>Why Saudi&nbsp;Arabia</b></span>
+        <h2 class="d-l rv d1" id="ksa-h">A Healthcare Market <span class="soft">Undergoing Rapid Transformation</span></h2>
+      </div>
+      <div class="rgt rv d2">
+        <p class="lead">Vision 2030 is driving major investment in hospital infrastructure, digital health, advanced diagnostics, privatization, and public-private partnerships.</p>
+        <a class="arrow-link" href="#saudi-market">Explore the Saudi market <i><svg><use href="#i-arrow"/></svg></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="ksa-frame focus" id="ksaFrame">
+    <img src="assets/img/riyadh-dusk.jpg" alt="Riyadh skyline at dusk, with the King Abdullah Financial District towers">
+    <div class="shade" aria-hidden="true"></div>
+    <div class="over g12">
+      <div class="fp">
+        <span class="tag"><span class="dot"></span>Our Footprint</span>
+        <p>Present Where <b>Decisions Are Made</b></p>
+        <div class="cities"><span><i></i>Riyadh</span><span><i></i>Jeddah</span><span><i></i>Eastern Province</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="drivers g12">
+      <div class="drv rv d1"><span class="tag"><span class="dot"></span>01</span><h3>Hospital infrastructure expansion</h3></div>
+      <div class="drv rv d2"><span class="tag"><span class="dot"></span>02</span><h3>Digital health &amp; advanced diagnostics</h3></div>
+      <div class="drv rv d3"><span class="tag"><span class="dot"></span>03</span><h3>Privatization &amp; PPP models</h3></div>
+      <div class="drv rv d4"><span class="tag"><span class="dot"></span>04</span><h3>Demand for clinically validated technologies</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 09 PARTNERS ================= -->
+<section class="partners" id="partners" aria-labelledby="pt-h">
+  <div class="wrap">
+    <div class="pt-head g12">
+      <div class="lft">
+        <span class="tag rv"><span class="dot"></span><b>Strategic Partners</b></span>
+        <h2 class="d-xl rv d1" id="pt-h">Global Innovation.<br><span class="soft">Local Execution.</span></h2>
+      </div>
+      <div class="rgt rv d2"><a class="arrow-link" href="#partners">All partners <i><svg><use href="#i-arrow"/></svg></i></a></div>
+    </div>
+    <div class="pt-grid g12">
+      <div class="pt rv d1">
+        <span class="top"><b>01</b></span>
+        <span class="logo"><img src="assets/logo/pulse.webp" alt="Pulse Medical"></span>
+        <h3>Pulse Medical Imaging</h3><p>Coronary physiology solutions</p>
+      </div>
+      <div class="pt rv d2">
+        <span class="top"><b>02</b></span>
+        <span class="logo"><img src="assets/logo/electrocore.webp" alt="electroCore"></span>
+        <h3>ElectroCore</h3><p>Non-invasive neuromodulation technologies</p>
+      </div>
+      <div class="pt rv d3">
+        <span class="top"><b>03</b></span>
+        <span class="logo"><img src="assets/logo/microport.svg" alt="MicroPort Scientific"></span>
+        <h3>MicroPort Scientific</h3><p>Advanced medical technologies</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10 CLINICAL VALUE ================= -->
+<section class="cv" id="clinical-value" aria-labelledby="cv-h">
+  <div class="canvas">
+    <span class="shape s1" aria-hidden="true"></span><span class="shape s2" aria-hidden="true"></span><span class="glow" aria-hidden="true"></span>
+    <div class="wrap-in">
+      <div class="cv-head g12">
+        <div class="lft">
+          <span class="tag rv"><span class="dot"></span><b>Clinical Value</b></span>
+          <h2 class="d-l rv d1" id="cv-h">Supporting Better <span class="soft">Healthcare Delivery</span></h2>
+        </div>
+        <div class="rgt rv d2"><a class="arrow-link on-dark" href="#clinical-value">Clinical Value <i><svg><use href="#i-arrow"/></svg></i></a></div>
+      </div>
+      <div class="cv-grid g12">
+        <div class="cv-img focus" data-focus>
+          <img src="assets/img/clinician-scan.jpg" alt="Clinician reviewing a brain scan on a tablet in a hospital ward">
+        </div>
+        <div class="chart" id="chart">
+          <div class="chart-top"><h3>Clinical adoption to date</h3><span class="tag"><span class="dot"></span>Medexsol · KSA</span></div>
+          <div class="plot">
+            <div class="axis" aria-hidden="true"><span>0</span><span>3</span><span>6</span><span>9</span></div>
+            <div class="bars" role="list">
+              <div class="bar" role="listitem"><span class="lbl">Physicians trained</span><div class="pill" style="--w:100%"><b>12<sup>+</sup></b></div></div>
+              <div class="bar" role="listitem"><span class="lbl">Active public and private clients</span><div class="pill" style="--w:66.67%"><b>8</b></div></div>
+              <div class="bar" role="listitem"><span class="lbl">MOH and government tenders</span><div class="pill" style="--w:41.67%"><b>5<sup>+</sup></b></div></div>
+              <div class="bar" role="listitem"><span class="lbl">Systems deployed and pilots initiated</span><div class="pill" style="--w:33.33%"><b>4<sup>+</sup></b></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="benefits g12">
+        <div class="bf rv"><svg class="chk" aria-hidden="true"><use href="#i-check"/></svg><h3>Enhanced diagnostic accuracy</h3></div>
+        <div class="bf rv d1"><svg class="chk" aria-hidden="true"><use href="#i-check"/></svg><h3>Data-driven clinical decision-making</h3></div>
+        <div class="bf rv d2"><svg class="chk" aria-hidden="true"><use href="#i-check"/></svg><h3>Reduction in unnecessary procedures</h3></div>
+        <div class="bf rv"><svg class="chk" aria-hidden="true"><use href="#i-check"/></svg><h3>Improved patient outcomes</h3></div>
+        <div class="bf rv d1"><svg class="chk" aria-hidden="true"><use href="#i-check"/></svg><h3>Increased operational efficiency</h3></div>
+        <div class="bf rv d2"><svg class="chk" aria-hidden="true"><use href="#i-check"/></svg><h3>Alignment with evidence-based practice</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11 CTA + FOOTER ================= -->
+<section class="end" id="contact" aria-labelledby="cta-h">
+  <div class="canvas">
+    <div class="light" aria-hidden="true"><span class="orb orb-a"></span><span class="orb orb-b"></span><span class="orb orb-c"></span></div>
+    <div class="cta">
+      <h2 class="d-xl rv d1" id="cta-h">Looking to Enter the<br><strong>Saudi Healthcare Market?</strong></h2>
+      <p class="rv d2">Partner with Medexsol to access local market expertise, regulatory support, clinical adoption capabilities, and long-term growth support.</p>
+      <div class="cta-actions rv d3">
+        <a class="btn btn-ink" href="#contact">Contact Medexsol <svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-glass" href="#contact">Become a Partner</a>
+      </div>
+    </div>
+
+    <footer class="ftr">
+      <div class="ftr-grid g12">
+        <div>
+          <a class="brand" href="#top"><img src="assets/logo/medexsol-h-color.svg" alt="Medexsol"></a>
+          <p class="about">Market access partner for global MedTech in Saudi&nbsp;Arabia.</p>
+        </div>
+        <div><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#partners">Partners</a></li><li><a href="#clinical-value">Clinical Value</a></li><li><a href="#saudi-market">Saudi Market</a></li></ul></div>
+        <div><h4>Services</h4><ul><li><a href="#market-access">Market Access</a></li><li><a href="#solutions">Solutions</a></li><li><a href="#products">Products</a></li><li><a href="#contact">Request a Quote</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="#contact">Riyadh office</a></li><li><a href="#contact">Jeddah office</a></li><li class="ph">[EMAIL]</li><li class="ph">[PHONE]</li></ul></div>
+      </div>
+      <div class="ftr-bot"><span>© 2026 Medexsol · <a href="#">Privacy</a> · <a href="#">Terms</a></span><a href="https://medexsol.com">medexsol.com</a></div>
+    </footer>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const markLoaded=()=>document.body.classList.add('loaded');
+  requestAnimationFrame(markLoaded);setTimeout(markLoaded,80);
+
+  // Reveal + focus (blur resolves when in view)
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv,[data-focus],#chart').forEach(el=>io.observe(el));
+
+  // Counters
+  const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,to=+el.dataset.count;cio.unobserve(el);if(reduce)return;let t0;const st=t=>{t0=t0||t;const p=Math.min((t-t0)/1400,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(st)};el.textContent='0';requestAnimationFrame(st)}),{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+  // Hero light follows pointer, gently
+  const light=document.getElementById('heroLight'),hc=document.getElementById('heroCanvas');
+  if(!reduce){hc.addEventListener('pointermove',e=>{const r=hc.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;light.style.transform=`translate(${x*-40}px,${y*-28}px)`});light.style.transition='transform 1.2s cubic-bezier(.16,1,.3,1)'}
+
+  // Header state, progress, nav highlight
+  const hdr=document.getElementById('hdr'),bar=document.getElementById('bar');
+  const links=[...document.querySelectorAll('.nav a')],secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+
+  // Solutions pinned horizontal scroll
+  const sol=document.getElementById('solutions'),pin=sol.querySelector('.sol-pin'),track=document.getElementById('track'),solIdx=document.getElementById('solIdx'),solBar=document.getElementById('solBar');
+  let travel=0;
+  function size(){travel=Math.max(0,track.scrollWidth-innerWidth);sol.style.height=(pin.offsetHeight+travel+120)+'px'}
+  size();addEventListener('resize',size);addEventListener('load',size);
+
+
+  function onScroll(){
+    const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+    hdr.classList.toggle('scrolled',y>40);
+    bar.style.width=(y/h*100)+'%';
+    // nav current
+    let cur=-1,best=-Infinity;secs.forEach((s,i)=>{if(!s)return;const t=s.getBoundingClientRect().top;if(t<innerHeight*.4&&t>best){best=t;cur=i}});
+    links.forEach((a,i)=>a.classList.toggle('cur',i===cur&&y>innerHeight*.6));
+    // track
+    const r=sol.getBoundingClientRect(),p=Math.min(1,Math.max(0,(-r.top-120)/Math.max(1,travel)));
+    track.style.transform=`translate3d(${-p*travel}px,0,0)`;
+    solBar.style.setProperty('--p',(p*100)+'%');
+    solIdx.textContent='0'+Math.min(6,1+Math.round(p*5));
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+</body>
+</html>
